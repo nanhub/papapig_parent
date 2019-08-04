@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="papapig_common" />
+        <module name="papapig_eureka" />
+        <module name="papapig_manage" />
+        <module name="papapig_record" />
+        <module name="papapig_sms" />
+        <module name="papapig_user" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="papapig_common" target="1.8" />
+      <module name="papapig_eureka" target="1.8" />
+      <module name="papapig_manage" target="1.8" />
+      <module name="papapig_parent" target="1.8" />
+      <module name="papapig_record" target="1.8" />
+      <module name="papapig_sms" target="1.8" />
+      <module name="papapig_user" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,41 @@
+server: 
+  port: 9008
+spring: 
+  application:  
+    name: papapig-user #指定服务名
+  thymeleaf:
+    cache: false
+  datasource:  
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/chargingpile?characterEncoding=UTF8
+    username: root
+    password: root
+  jpa: 
+    database: MySQL
+    show-sql: true
+  mvc:
+    static-path-pattern: static/**
+#pagehelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+mybatis:
+    # 通用mapper已经提供了驼峰转换的设置，所以可以不用再设置
+      configuration:
+        map-underscore-to-camel-case: true
+#  redis:
+#    host: 192.168.246.129
+#  rabbitmq:
+#    host: 192.168.246.129
+#jwt:
+#  config:
+#    key: itcast
+#    ttl: 3600000
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:6868/eureka/
+#  instance:
+#    prefer-ip-address: true

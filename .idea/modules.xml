@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/papapig_common/papapig_common.iml" filepath="$PROJECT_DIR$/papapig_common/papapig_common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/papapig_eureka/papapig_eureka.iml" filepath="$PROJECT_DIR$/papapig_eureka/papapig_eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/papapig_manage/papapig_manage.iml" filepath="$PROJECT_DIR$/papapig_manage/papapig_manage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/papapig_parent.iml" filepath="$PROJECT_DIR$/papapig_parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/papapig_record/papapig_record.iml" filepath="$PROJECT_DIR$/papapig_record/papapig_record.iml" />
+      <module fileurl="file://$PROJECT_DIR$/papapig_sms/papapig_sms.iml" filepath="$PROJECT_DIR$/papapig_sms/papapig_sms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/papapig_user/papapig_user.iml" filepath="$PROJECT_DIR$/papapig_user/papapig_user.iml" />
+    </modules>
+  </component>
+</project>
