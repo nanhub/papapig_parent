@@ -81,7 +81,7 @@ public class AuthImageController {
         //表明生成的响应是图片   
         response.setContentType("image/jpeg");   
            
-        int width=100, height=18;   
+        int width=80, height=18;
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);   
            
         Graphics g = image.getGraphics();   

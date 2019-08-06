@@ -4,11 +4,12 @@ import lombok.Data;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Table(name = "user_main")
-public class UserMain {
+public class UserMain implements Serializable{
 
     @Id
     private Integer userId;//用户id
@@ -49,4 +50,5 @@ public class UserMain {
     private String loginkey;//天眼登录校验标识
     private String userkey;//天眼绑定标识
     private String cashChl;//取现方式ID
+    private String jxmoblie;
 }

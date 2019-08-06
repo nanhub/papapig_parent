@@ -3,16 +3,24 @@ package com.pppig.user.controller;
 import com.pppig.user.pojo.UserMain;
 import com.pppig.user.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import util.AuthImageController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class LoginController {
 
     @Autowired
     private LoginService loginService;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     //首页
     @RequestMapping("index")
@@ -45,9 +53,24 @@ public class LoginController {
 
     //注册
     @RequestMapping("register")
-    public String register(UserMain userMain){
+    @ResponseBody
+    public String register(UserMain userMain,String code){
+        String smsRedis = (String) redisTemplate.opsForValue().get("code_"+userMain.getMobile());
+        if(smsRedis.isEmpty()){
+            return "no";
+        }
+        if(!smsRedis.equals(code)){
+            return "error";
+        }
         loginService.InsertUserMain(userMain);
-        return "1";
+        return "success";
+    }
+
+    //随机验证码图片
+    @RequestMapping("getMa")
+    public void getMa(HttpServletRequest request, HttpServletResponse response){
+        AuthImageController authImageController = new AuthImageController();
+        authImageController.createImage(request, response);
     }
 
 }

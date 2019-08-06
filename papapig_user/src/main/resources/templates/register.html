@@ -212,9 +212,23 @@
             var mobile = $("#mobile").val()
             var passwd = $("#passwd").val()
             var referee = $("#referee").val()
-            alert(mobile)
-            alert(passwd)
-            alert(referee)
+            var code = $("#code").val()
+
+            $.post(
+                "register",
+                {mobile:mobile,passwd:passwd,referee:referee,code:code},
+                function (data) {
+                    if(data=="error"){
+                        alert("验证码错误")
+                    }else if(data=="success"){
+                        alert("注册成功")
+                        Location="/tologin"
+                    }else{
+                        alert("注册失败")
+                        location.reload()
+                    }
+                }
+            )
 
         }
         //验证码
@@ -261,7 +275,7 @@
                             <a data-v-8414f242="" href="/register" class="router-link-exact-active router-link-active">注册</a>
                         </li>
                         <li data-v-8414f242="">
-                            <a data-v-8414f242="" href="/login" class=""></a>
+                            <a data-v-8414f242="" href="/toLogin" class="">登录</a>
                         </li>
                     </ul>
                 </div>
@@ -369,7 +383,7 @@
                             <div class="el-form-item__content">
                                 <div data-v-8414f242="" class="el-input el-input-group el-input-group--append el-input--prefix">
                                     <!---->
-                                    <input type="text" autocomplete="off" placeholder="验证码" maxlength="6" class="el-input__inner">
+                                    <input type="text" autocomplete="off" placeholder="验证码" maxlength="6" class="el-input__inner" id="code">
                                     <span class="el-input__prefix">
                                         <i class="el-input__icon iconfont icon-quanxian"></i>
                                     </span>
@@ -428,7 +442,7 @@
                             </label>
                             <a data-v-8414f242="" href="/Serviceagreement" class="" target="_blank">《胖胖猪服务协议》</a>
                         </p>
-                        <button data-v-8414f242="" type="button" class="el-button getregister el-button--default">
+                        <button data-v-8414f242="" type="button" class="el-button getregister el-button--default" onclick="register()">
                             <!---->
                             <!---->
                             <span>注册</span>

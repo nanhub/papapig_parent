@@ -34,6 +34,26 @@ public class LoginServiceImpl implements LoginService {
     public void InsertUserMain(UserMain userMain) {
         userMain.setPasswd(bCryptPasswordEncoder.encode(userMain.getPasswd()));
         userMain.setRegisterTime(new Date());
+
+        userMain.setPayPassword("000000");
+        userMain.setNickName(userMain.getMobile());
+        userMain.setRoles(2);
+        userMain.setCash(0.00);
+        userMain.setFrozenWithDrawCash(0.00);
+        userMain.setFrozenBiddingCash(0.00);
+        userMain.setIdVerifyLimit(1);
+        userMain.setStatus(0);
+        userMain.setForbidStatus(0);
+        userMain.setAlbumCapacity(50);
+        userMain.setSecurityLevel(0);
+
+        if(userMain.getReferee()==null || "".equals(userMain.getReferee())){
+            userMain.setReferee("");
+        }
+
+
+
+        System.out.println(userMain.getPasswd());
         loginDao.InsertUserMain(userMain);
     }
 

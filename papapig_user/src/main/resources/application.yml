@@ -1,5 +1,5 @@
 server: 
-  port: 9008
+  port: 9007
 spring: 
   application:  
     name: papapig-user #指定服务名
@@ -7,7 +7,7 @@ spring:
     cache: false
   datasource:  
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/performance_schema?characterEncoding=UTF8
+    url: jdbc:mysql://127.0.0.1:3306/ppig?characterEncoding=UTF8
     username: root
     password: root
   jpa: 
@@ -15,6 +15,8 @@ spring:
     show-sql: true
   mvc:
     static-path-pattern: static/**
+  redis:
+    host: 192.168.246.129
 #pagehelper分页插件
 pagehelper:
   helperDialect: mysql
@@ -25,10 +27,6 @@ mybatis:
     # 通用mapper已经提供了驼峰转换的设置，所以可以不用再设置
       configuration:
         map-underscore-to-camel-case: true
-  redis:
-    host: 192.168.246.129
-  rabbitmq:
-    host: 192.168.246.129
 #jwt:
 #  config:
 #    key: itcast
