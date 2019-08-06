@@ -1,11 +1,11 @@
-package com.pppig.eureka;
+package com.pppig.record;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EurekaApplication {
+public class RecordApplication {
     public static void main(String[] args) {
-        SpringApplication.run(EurekaApplication.class);
+        SpringApplication.run(RecordApplication.class);
     }
 }
