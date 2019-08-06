@@ -207,6 +207,17 @@
     <script src="../static/js/md5.js"></script>
     <script>
 
+        //注册
+        function register() {
+            var mobile = $("#mobile").val()
+            var passwd = $("#passwd").val()
+            var referee = $("#referee").val()
+            alert(mobile)
+            alert(passwd)
+            alert(referee)
+
+        }
+        //验证码
         function sendSms() {
             var mobile = $("#mobile").val()
             $.post(
@@ -390,7 +401,7 @@
 
                                 <div data-v-8414f242="" class="el-input el-input--prefix">
                                     <!---->
-                                    <input type="text" autocomplete="off" placeholder="邀请号(选填)" maxlength="11" class="el-input__inner">
+                                    <input type="text" autocomplete="off" placeholder="邀请号(选填)" maxlength="11" class="el-input__inner" id="referee">
                                     <span class="el-input__prefix">
                                         <i class="el-input__icon iconfont icon-qunzu">
 

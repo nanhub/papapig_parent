@@ -4,7 +4,9 @@ import com.pppig.user.pojo.UserMain;
 import com.pppig.user.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LoginController {
@@ -32,6 +34,7 @@ public class LoginController {
 
     //发送验证码
     @RequestMapping("sendSms")
+    @ResponseBody
     public String sendSms(String mobile){
         if(mobile==null || mobile.equals("")){
             return "no";

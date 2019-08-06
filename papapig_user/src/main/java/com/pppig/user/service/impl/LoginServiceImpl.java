@@ -49,7 +49,7 @@ public class LoginServiceImpl implements LoginService {
         map.put("code",code);
         map.put("mobile",mobile);
         //给用户发送短信
-        rabbitTemplate.convertAndSend("pig",map);
+        //rabbitTemplate.convertAndSend("pig",map);
         //在控制台显示
         System.out.println(mobile+"收到验证码是："+code);
     }
