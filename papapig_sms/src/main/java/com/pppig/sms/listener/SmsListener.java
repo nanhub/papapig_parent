@@ -13,7 +13,7 @@ import java.util.Map;
  * 短信监听类
  */
 @Component
-@RabbitListener(queues = "sms")
+@RabbitListener(queues = "pig")
 public class SmsListener {
 
 

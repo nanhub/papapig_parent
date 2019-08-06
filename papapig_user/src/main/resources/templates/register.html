@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:c="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="keywords" content="胖胖猪|胖胖猪网贷|p2p网络借贷|网络借贷平台|如何投资理财|北京无抵押贷款|p2p网贷第一品牌">
@@ -8,9 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="./static/wantTolend/favicon.ico" type="image/x-icon">
     <link href="./static/css/app.24350baff0ae97784070109e2a4a3b11.css" rel="stylesheet">
-
-
-
     <style type="text/css">
         @media screen and (min-width:460px){
             .wh_item_date[data-v-2ebcbc83]:hover{background:#71c7a5;cursor:pointer}}[data-v-2ebcbc83]{margin:0;padding:0}
@@ -205,36 +202,16 @@
         }
     </style>
     <style type="text/css">.slider-container{margin:0 auto;overflow:hidden;z-index:1;height:100%;width:100%;position:relative;white-space:nowrap}.slider-center-center{margin:auto;z-index:1;position:absolute;top:0;left:0;right:0;bottom:0}.slider-touch{height:100%}.swiper-container-horizontal>*>.slider-wrapper{-moz-flex-direction:row;-ms-flex-direction:row;-o-flex-direction:row;flex-direction:row}.swiper-container-horizontal>*>.slider-wrapper,.swiper-container-vertical>*>.slider-wrapper{box-sizing:content-box;display:flex;height:100%;position:relative;transition-property:transform;width:100%;z-index:1;align-items:center}.swiper-container-vertical>*>.slider-wrapper{-moz-flex-direction:column;-ms-flex-direction:column;-o-flex-direction:column;flex-direction:column}.slider-item{flex-shrink:0;height:100%;position:relative;width:100%;align-items:center;display:flex;font-size:40px;justify-content:center;text-align:center;color:#fff}.slider-fade .slider-item{position:absolute;left:0;opacity:0}.slider-pagination{position:absolute;text-align:center;transform:translateZ(0);z-index:10}.swiper-container-horizontal>.slider-pagination-bullets{bottom:10px;left:0;width:100%}.swiper-container-horizontal>*>.slider-pagination-bullet{background:#000 none repeat scroll 0 0;border-radius:100%;display:inline-block;height:8px;opacity:.2;width:8px;cursor:pointer;margin:0 5px}.swiper-container-vertical>.slider-pagination-bullets{left:0;bottom:auto;left:auto;width:auto;right:10px;top:50%;transform:translate3d(0,-50%,0)}.swiper-container-vertical>*>.slider-pagination-bullet{background:#000 none repeat scroll 0 0;border-radius:100%;height:8px;opacity:.2;width:8px;cursor:pointer;display:block;margin:5px 0}.swiper-container-horizontal .slider-pagination-bullet-active,.swiper-container-vertical .slider-pagination-bullet-active{background:#fff none repeat scroll 0 0;opacity:1}.slider-loading{position:absolute;top:50%;transform:translateY(-50%);z-index:999}.swiper-container-cursorGrab{cursor:grab}</style>
+
     <script src="../static/js/jquery-1.8.2.min.js"></script>
     <script src="../static/js/md5.js"></script>
-
     <script>
-        //手机号
-        function usernamephone() {
-            var phone = $("#username").val()
-            if(!(/^1[3456789]\d{9}$/.test(phone))){
-                alert("手机号码有误，请重填");
-                var phone = $("#username").val("")
-                return false;
-            }
-        }
 
-        //密码
-        function passwordblur() {
-            var password = $("#password").val()
-            if(!(/^[\w]{6,12}$/.test(password))){
-                alert("密码有误，请重填");
-                var phone = $("#password").val("")
-                return false;
-            }
-        }
-
-        //获取验证码
-        function yanzhengma(){
-            var phone = $("#username").val()
+        function sendSms() {
+            var mobile = $("#mobile").val()
             $.post(
-                "code",
-                {phone:phone},
+                "sendSms",
+                {mobile:mobile},
                 function (data) {
                     if(data=="success"){
                         alert("发送成功")
@@ -244,42 +221,9 @@
                 }
             )
         }
-
-        //注册
-        function btn() {
-            var phone = $("#username").val()
-            var password = $.md5($("#password").val());
-            var code = $("#code").val();
-            var rephone = $("#rephone").val();
-            if(rephone.length<0){
-                rephone="";
-            }
-            var tid = $(":radio:checked").val()
-
-
-            $.post(
-                "toRegister",
-                {phone:phone,password:password,code:code,rephone:rephone,tid:tid},
-                function (data) {
-                    if(data=="success"){
-                        alert("注册成功")
-                        location="/login"
-                    }else if(data="false"){
-                        alert("注册失败")
-                        location.reload()
-                    }else{
-                        alert("验证码错误")
-                        var code = $("#code").val("");
-                    }
-                }
-            )
-        }
-
-
     </script>
+
 </head>
-
-
 <body>
 <div id="app">
     <div data-v-8414f242="" class="register">
@@ -306,7 +250,7 @@
                             <a data-v-8414f242="" href="/register" class="router-link-exact-active router-link-active">注册</a>
                         </li>
                         <li data-v-8414f242="">
-                            <a data-v-8414f242="" href="/login" class="">登录</a>
+                            <a data-v-8414f242="" href="/login" class=""></a>
                         </li>
                     </ul>
                 </div>
@@ -357,10 +301,10 @@
                 <div data-v-8414f242="" class="login">
                     <h3 data-v-8414f242="">注册胖胖猪账户</h3>
                     <p data-v-8414f242="">
-                        <label data-v-8414f242="" role="radio" aria-checked="false" tabindex="0" class="el-radio is-checked">
+                        <label data-v-8414f242="" role="radio" aria-checked="true" tabindex="0" class="el-radio is-checked">
                             <span class="el-radio__input is-checked">
                                 <span class="el-radio__inner"></span>
-                                <input type="radio"  value="1"  name="radio" >
+                                <input type="radio" aria-hidden="true" tabindex="-1" class="el-radio__original" value="1">
                             </span>
                             <span class="el-radio__label">
                                 我要出借
@@ -370,7 +314,7 @@
                         <label data-v-8414f242="" role="radio" tabindex="0" class="el-radio">
                             <span class="el-radio__input">
                                 <span class="el-radio__inner"></span>
-                                <input type="radio"   value="2" name="radio" >
+                                <input type="radio" aria-hidden="true" tabindex="-1" class="el-radio__original" value="2">
                             </span>
                             <span class="el-radio__label">
                                 我要借款
@@ -378,13 +322,13 @@
                             </span>
                         </label>
                     </p>
-                    <form data-v-8414f242="" class="el-form" >
+                    <form data-v-8414f242="" class="el-form">
                         <div data-v-8414f242="" class="el-form-item is-required">
                             <!---->
                             <div class="el-form-item__content">
                                 <div data-v-8414f242="" class="el-input el-input--prefix">
                                     <!---->
-                                    <input type="text"  maxlength="11" placeholder="请输入用手机号" class="el-input__inner"  id="username" onblur="usernamephone()" >
+                                    <input type="text" autocomplete="off" maxlength="11" placeholder="请输入用手机号" class="el-input__inner" id="mobile">
                                     <span class="el-input__prefix">
                                         <i class="el-input__icon iconfont icon-shouji"></i>
                                     </span>
@@ -399,7 +343,7 @@
                             <div class="el-form-item__content">
                                 <div data-v-8414f242="" class="el-input el-input--prefix">
                                     <!---->
-                                    <input type="password" autocomplete="off" placeholder="登录密码" id="password" maxlength="16" class="el-input__inner" onblur="passwordblur()">
+                                    <input type="password" autocomplete="off" placeholder="密码" maxlength="16" class="el-input__inner" id="passwd">
                                     <span class="el-input__prefix">
                                         <i class="el-input__icon iconfont icon-mima"></i>
                                     </span>
@@ -414,16 +358,16 @@
                             <div class="el-form-item__content">
                                 <div data-v-8414f242="" class="el-input el-input-group el-input-group--append el-input--prefix">
                                     <!---->
-                                    <input type="text" autocomplete="off" placeholder="验证码" name="cod" maxlength="4" id="code" class="el-input__inner">
+                                    <input type="text" autocomplete="off" placeholder="验证码" maxlength="6" class="el-input__inner">
                                     <span class="el-input__prefix">
                                         <i class="el-input__icon iconfont icon-quanxian"></i>
                                     </span>
                                     <!---->
                                     <div class="el-input-group__append">
-                                        <button data-v-8414f242="" type="button" class="el-button el-button--default"  onclick="yanzhengma()" >
+                                        <button data-v-8414f242="" type="button" class="el-button el-button--default" onclick="sendSms()">
                                             <!---->
                                             <!---->
-                                            <span >获取验证码</span>
+                                            <span>获取验证码</span>
                                         </button>
                                         <button data-v-8414f242="" type="button" class="el-button el-button--default" style="display: none;">
                                             <!---->
@@ -446,7 +390,7 @@
 
                                 <div data-v-8414f242="" class="el-input el-input--prefix">
                                     <!---->
-                                    <input type="text" autocomplete="off" placeholder="邀请号(选填)" maxlength="11" class="el-input__inner" id="rephone">
+                                    <input type="text" autocomplete="off" placeholder="邀请号(选填)" maxlength="11" class="el-input__inner">
                                     <span class="el-input__prefix">
                                         <i class="el-input__icon iconfont icon-qunzu">
 
@@ -473,14 +417,14 @@
                             </label>
                             <a data-v-8414f242="" href="/Serviceagreement" class="" target="_blank">《胖胖猪服务协议》</a>
                         </p>
-                        <button data-v-8414f242="" type="button" class="el-button getregister el-button--default" onclick="btn()">
+                        <button data-v-8414f242="" type="button" class="el-button getregister el-button--default">
                             <!---->
                             <!---->
                             <span>注册</span>
                         </button>
                         <p data-v-8414f242="" class="accountnumber">
                             已有账号？直接
-                            <a data-v-8414f242="" href="/login" class="">登录</a>
+                            <a data-v-8414f242="" href="/toLogin" class="">登录</a>
                         </p>
                     </form>
                 </div>

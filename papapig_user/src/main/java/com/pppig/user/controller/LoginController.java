@@ -1,5 +1,7 @@
 package com.pppig.user.controller;
 
+import com.pppig.user.pojo.UserMain;
+import com.pppig.user.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
     @Autowired
-
+    private LoginService loginService;
 
     //首页
     @RequestMapping("index")
@@ -26,6 +28,23 @@ public class LoginController {
     @RequestMapping("toLogin")
     public String toLogin(){
         return "login";
+    }
+
+    //发送验证码
+    @RequestMapping("sendSms")
+    public String sendSms(String mobile){
+        if(mobile==null || mobile.equals("")){
+            return "no";
+        }
+        loginService.sendSms(mobile);
+        return "success";
+    }
+
+    //注册
+    @RequestMapping("register")
+    public String register(UserMain userMain){
+        loginService.InsertUserMain(userMain);
+        return "1";
     }
 
 }
