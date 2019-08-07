@@ -5,6 +5,7 @@ import com.pppig.user.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -74,12 +75,15 @@ public class LoginController {
         authImageController.createImage(request, response);
     }
 
+    //登录
     @RequestMapping("login")
     @ResponseBody
     public String login(UserMain userMain, String rand, HttpSession session){
 
         UserMain login = loginService.login(userMain);
+
         if(login!= null){
+            session.setAttribute("userId",login.getUserId());
             //获取验证码
             String code = (String) session.getAttribute("rand");
             if(rand.equals(code)){

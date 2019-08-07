@@ -238,7 +238,7 @@
         function login(){
 
             var mobile = $("#mobile").val()
-            var passwd = $.md5($("#passwd").val());
+            var passwd = $("#passwd").val();
             var rand = $("#rand").val()
 
 
@@ -248,6 +248,7 @@
                 function(data){
                     if(data=="ok"){
                         alert("登录成功")
+                        location="index"
                     }else if(data=="no"){
                         alert("登录失败")
                         location.reload()

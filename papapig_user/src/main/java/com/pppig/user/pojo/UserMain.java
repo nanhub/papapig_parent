@@ -50,5 +50,4 @@ public class UserMain implements Serializable{
     private String loginkey;//天眼登录校验标识
     private String userkey;//天眼绑定标识
     private String cashChl;//取现方式ID
-    private String jxmoblie;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="keywords" content="胖胖猪|胖胖猪网贷|p2p网络借贷|网络借贷平台|如何投资理财|北京无抵押贷款|p2p网贷第一品牌">
@@ -349,7 +349,7 @@
                             </a>
                         </li>
                         <li data-v-6750b34c="">
-                            <a data-v-6750b34c="" href="/accountCenter?type=jump" class="">我的账户</a>
+                            <a data-v-6750b34c="" th:href="@{/home(userId=${session.userId})}" class="">我的账户</a>
                         </li>
                     </ul>
                 </nav>

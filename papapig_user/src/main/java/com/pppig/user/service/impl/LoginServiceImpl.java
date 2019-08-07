@@ -75,7 +75,8 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public UserMain login(UserMain userMain) {
         UserMain login = loginDao.login(userMain);
-        if(login!=null || bCryptPasswordEncoder.matches(userMain.getPasswd(),login.getPasswd())){
+        if(login!=null && bCryptPasswordEncoder.matches(userMain.getPasswd(),login.getPasswd())){
+
             return  login;
         }
         return null;
