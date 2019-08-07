@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import util.MD5Utils;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -34,7 +35,6 @@ public class LoginServiceImpl implements LoginService {
     public void InsertUserMain(UserMain userMain) {
         userMain.setPasswd(bCryptPasswordEncoder.encode(userMain.getPasswd()));
         userMain.setRegisterTime(new Date());
-
         userMain.setPayPassword("000000");
         userMain.setNickName(userMain.getMobile());
         userMain.setRoles(2);
@@ -50,8 +50,6 @@ public class LoginServiceImpl implements LoginService {
         if(userMain.getReferee()==null || "".equals(userMain.getReferee())){
             userMain.setReferee("");
         }
-
-
 
         System.out.println(userMain.getPasswd());
         loginDao.InsertUserMain(userMain);
@@ -72,5 +70,14 @@ public class LoginServiceImpl implements LoginService {
         //rabbitTemplate.convertAndSend("pig",map);
         //在控制台显示
         System.out.println(mobile+"收到验证码是："+code);
+    }
+
+    @Override
+    public UserMain login(UserMain userMain) {
+        UserMain login = loginDao.login(userMain);
+        if(login!=null || bCryptPasswordEncoder.matches(userMain.getPasswd(),login.getPasswd())){
+            return  login;
+        }
+        return null;
     }
 }

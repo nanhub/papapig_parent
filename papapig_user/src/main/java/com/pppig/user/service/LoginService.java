@@ -14,4 +14,6 @@ public interface LoginService {
     void InsertUserMain(UserMain userMain);
 
     void sendSms(String mobile);
+
+    UserMain login(UserMain userMain);
 }

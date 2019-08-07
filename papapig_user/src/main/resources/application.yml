@@ -1,5 +1,5 @@
 server: 
-  port: 9007
+  port: 9008
 spring: 
   application:  
     name: papapig-user #指定服务名
@@ -16,6 +16,8 @@ spring:
   mvc:
     static-path-pattern: static/**
   redis:
+    host: 192.168.246.129
+  rabbitmq:
     host: 192.168.246.129
 #pagehelper分页插件
 pagehelper:

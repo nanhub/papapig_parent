@@ -12,6 +12,7 @@ import util.AuthImageController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
@@ -71,6 +72,27 @@ public class LoginController {
     public void getMa(HttpServletRequest request, HttpServletResponse response){
         AuthImageController authImageController = new AuthImageController();
         authImageController.createImage(request, response);
+    }
+
+    @RequestMapping("login")
+    @ResponseBody
+    public String login(UserMain userMain, String rand, HttpSession session){
+
+        UserMain login = loginService.login(userMain);
+        if(login!= null){
+            //获取验证码
+            String code = (String) session.getAttribute("rand");
+            if(rand.equals(code)){
+                return "ok";
+            }else{
+                return "";
+            }
+        }else{
+            return "no";
+        }
+
+
+
     }
 
 }

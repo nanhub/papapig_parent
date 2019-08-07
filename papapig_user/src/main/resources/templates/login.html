@@ -225,44 +225,26 @@
     <script src="../static/js/md5.js"></script>
     <script>
 
-        //手机号
-        function usernamephone() {
-            var phone = $("#username").val()
-            if(!(/^1[3456789]\d{9}$/.test(phone))){
-                alert("手机号码有误，请重填");
-                var phone = $("#username").val("")
-                return false;
-            }
-        }
 
-        //密码
-        function passwordblur() {
-            var password = $("#password").val()
-            if(!(/^[\w]{6,12}$/.test(password))){
-                alert("密码有误，请重填");
-                var phone = $("#password").val("")
-                return false;
-            }
-        }
 
 
         //验证码
         function  img() {
             var s = $("#yanma")
-            s.attr("src", "getMa?" + Math.random())
+            s.attr("src", "/getMa?" + Math.random())
         }
 
         //登录
         function login(){
 
-            var phone = $("#username").val()
-            var password = $.md5($("#password").val());
+            var mobile = $("#mobile").val()
+            var passwd = $.md5($("#passwd").val());
             var rand = $("#rand").val()
 
 
             $.post(
-                "tologin",
-                {phone:phone,password:password,rand:rand},
+                "login",
+                {mobile:mobile,passwd:passwd,rand:rand},
                 function(data){
                     if(data=="ok"){
                         alert("登录成功")
@@ -392,7 +374,7 @@
                                         <div class="el-form-item__content" style="margin-left: 10px;">
                                             <div data-v-05360d9e="" class="el-input el-input--prefix">
                                                 <!---->
-                                                <input type="text" autocomplete="off" maxlength="16" placeholder="请输入用手机号/昵称" class="el-input__inner" id="username" onblur="usernamephone()" >
+                                                <input type="text" autocomplete="off" maxlength="16" placeholder="请输入用手机号/昵称" class="el-input__inner" id="mobile"  >
                                                 <span class="el-input__prefix">
                                                     <i class="el-input__icon iconfont icon-shouji"></i>
                                                 </span>
@@ -407,7 +389,7 @@
                                         <div class="el-form-item__content" style="margin-left: 10px;">
                                             <div data-v-05360d9e="" class="el-input el-input--prefix">
                                                 <!---->
-                                                <input type="password" autocomplete="off" placeholder="由6位以上字母数字组成" maxlength="16" class="el-input__inner" id="password" onblur="passwordblur">
+                                                <input type="password" autocomplete="off" placeholder="由6位以上字母数字组成" maxlength="16" class="el-input__inner" id="passwd">
                                                 <span class="el-input__prefix">
                                                     <i class="el-input__icon iconfont icon-mima"></i>
                                                 </span>
@@ -430,7 +412,7 @@
                                             <button  data-v-05360d9e="" type="button" class="el-button el-button--default" onclick="img()">
                                                 <!---->
                                                 <!---->
-                                                <img  src="/getMa" id="yanma">
+                                                <img  src="getMa" id="yanma">
 
                                             </button>
                                             <!---->
