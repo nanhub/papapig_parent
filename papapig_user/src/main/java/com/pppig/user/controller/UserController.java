@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 public class UserController {
@@ -70,35 +73,47 @@ public class UserController {
 
     //开户
     @RequestMapping("getOpenAccount")
-    public String getOpenAccount(String idCardNo,String name,String mobile,HttpServletRequest request ){
-        Common common = new Common();
-        if ("".equals(idCardNo)&&"".equals(name)&&"".equals(mobile)){
-            request.setAttribute("error","输入信息有误");
-            return "OpenAccount";
-        }
-        //三码校验
-        //PhonecodeUtil.gethone(idCardNo, name, mobile);
+    public String getOpenAccount(String idCardNo,String name,String mobile,HttpServletRequest request,HttpSession session ){
+
         HashMap<String, String> OPMap = new HashMap<>();
-        OPMap.put("version", Constant.version);
-        OPMap.put("txCode", Constant.txCode);
-        OPMap.put("instCode", Constant.instCode);
-        OPMap.put("bankCode", Constant.bankCode);
-        OPMap.put("txDate", common.todate());
-        OPMap.put("txTime", common.totime());
-        OPMap.put("seqNo", common.Random());
-        OPMap.put("channel", Constant.channel);
-        OPMap.put("acctUse", Constant.acctUse);
-        OPMap.put("idType", Constant.idType);
+        //判断是否传值
+        if ("".equals(idCardNo)&&"".equals(name)&&"".equals(mobile)){
+            request.setAttribute("no","输入信息有误");
+            return "accountCenter/pppigAccountOpen";
+        }
+        //电话号验证
+        Pattern p = Pattern.compile("^1[0-9]{10}$");
+        Matcher m = p.matcher(mobile);
+        boolean b = m.matches();
+        if(!b){
+            request.setAttribute("no","手机号格式错误");;
+            return "accountCenter/pppigAccountOpen";
+        }
+        //身份证校验
+        String regex = "\\d{15}(\\d{2}[0-9xX])?";
+        boolean matches = idCardNo.matches(regex);
+        if(!matches){
+            request.setAttribute("no","身份证格式错误");;
+            return "accountCenter/pppigAccountOpen";
+        }
+
+        //获取session中的userid
+        Integer userId = (Integer) session.getAttribute("userId");
+        OPMap.put("userId",userId.toString());
         OPMap.put("idCardNo", idCardNo);
         OPMap.put("name", name);
         OPMap.put("mobile", mobile);
-        OPMap.put("email", "");
-        OPMap.put("retUrl", "index");
-        OPMap.put("notifyUrl", "10.1.67.28:9008/ElectronicAccount");
-        OPMap.put("userIP", "");
-        OPMap.put("acqRes", "");
+        Map<String, String> OPSMap = userService.accountOpen(OPMap);
+
+        //若返回的集合有值则提示用户相对应的提示
+        String no = OPSMap.get("no");
+        if(no!=null){
+            request.setAttribute("no",no);
+            return "accountCenter/pppigAccountOpen";
+        }
         request.setAttribute("OPMap",OPMap);
-        return "accountCenter/accountOpen";
+
+        return "accountCenter";
     }
 
 
